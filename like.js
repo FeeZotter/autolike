@@ -1,41 +1,32 @@
-likeItButtonReference = document.getElementById("likeItButton")
-function likeIt() {
-    console.log("event fired");
-    if(document.getElementById('likeItButton').getElementsByClassName('on')[0]) {
-        console.log('class found'); 
-    }else{
-        console.log('class not found'); 
-    }
-}; 
-
-
 function likeItObserver(){
 
+    console.log("1")
     
     var observer = new MutationObserver(function(mutations){
+        console.log("2")
         mutations.forEach(function(mutation){
+            console.log("3")
             console.log(mutation.type); // <- It always detects changes
-            if (likeItButtonReference.getElementsByClassName('on')[0]){
+            if (document.getElementById("likeItButton").getElementsByClassName('on')[0]){
                 console.log("episode is liked, oberser is shutting down");
+                observer.disconnect();
             }
             else{
-                console.log("episode is not liked");
+                console.log("episode is not liked, button will be clicked");
+                document.getElementById("likeItButton").click();
             }
         });    
     });
     
-    var config = {characterData: true, subtree: true};
-    observer.observe(likeItButtonReference, config);
-    //observer.disconnect();
+    var config = {characterData: true, childList: true, subtree: true};
+    observer.observe(document.getElementById("likeItButton"), config);
+    console.log(observer);
     
     }
     
 
 
 console.log("like.js started")
-console.log(likeItButtonReference)
-console.log(likeItButtonReference.children[1].innerText)
-console.log(likeItButtonReference.children[0].classList[2])
 
 function myloading() {
     if(document.getElementById('likeItButton').children[0].classList[2] != "on")
@@ -59,3 +50,4 @@ function myloading() {
     }
 }
 
+window.addEventListener("load", myloading());
