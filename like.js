@@ -1,14 +1,30 @@
-function likeItObserver(){
+myP = document.createElement("p")
+myP.innerText = "Episode got liked"
+myP.style = "text-align: center; font-size: 2em;";
 
-    console.log("1")
-    
+myDiv = document.createElement("div")
+myDiv.style = "position: fixed; top: 6em; background: rgba(6, 191, 0, 0.5); display:none; width: 15%; z-index: 100; notification; right:2em;"
+myDiv.id = "notification";
+myDiv.appendChild(myP);
+
+document.body.appendChild(myDiv)
+
+
+function likeDetected()
+{
+    document.getElementById("notification").style.setProperty("display", "block");
+    setTimeout(function () {
+        document.getElementById("notification").style.setProperty("display", "none");
+    }, 3000);
+}
+
+function likeItObserver(){
     var observer = new MutationObserver(function(mutations){
-        console.log("2")
         mutations.forEach(function(mutation){
-            console.log("3")
             console.log(mutation.type); // <- It always detects changes
             if (document.getElementById("likeItButton").getElementsByClassName('on')[0]){
-                console.log("episode is liked, oberser is shutting down");
+                console.log("episode is liked, observer is shutting down");
+                likeDetected();
                 observer.disconnect();
             }
             else{
@@ -32,7 +48,6 @@ function myloading() {
     if(document.getElementById('likeItButton').children[0].classList[2] != "on")
     {
         console.log("no like");
-        
         if(document.getElementById('likeItButton').children[1].innerText != "Like") 
         { 
             console.log("like it"); document.getElementById('likeItButton').click(); 
@@ -42,11 +57,11 @@ function myloading() {
             console.log("eventlistener startes")
             likeItObserver();
         }
-        
     }
     else 
     {
         console.log("already liked")
+        likeDetected();
     }
 }
 
