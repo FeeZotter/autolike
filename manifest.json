@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
-    "name": "Borderify",
+    "name": "autolikeWebtoonEpisodes",
     "version": "1.0",
   
-    "description": "Adds a red border to all webpages matching mozilla.org.",
+    "description": "Likes all Webtoon episodes on entering. Nothing else, not even convinience features.",
   
     "icons": {
       "48": "icons/border-48.png"
