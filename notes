@@ -1,0 +1,5 @@
+\s*webtoons.com\/[a-z]*\/[a-z]*\/[\d|\w|-]*\/[\d|\w|-]*\/viewer\?title_no=\d*&episode_no=\d*
+
+*://*.mozilla.org/*
+
+*://*.webtoons.com/[a-z]*/[a-z]*/[\d|\w|-]*/[\d|\w|-]*/viewer?title_no=\d*&episode_no\d*
